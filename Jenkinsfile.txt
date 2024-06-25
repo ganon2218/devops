@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM('H/2 * * * *')
+    }
+    stages {
+        stage('Clone Repository') {
+            steps {
+                // Clean the workspace before cloning the repository
+                deleteDir()
+                // Clone the repository
+                git branch: 'develop', url: 'https://github.com/ganon2218/devops.git'
+            }
+        }
+    }
+}
